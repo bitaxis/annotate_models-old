@@ -1,6 +1,5 @@
 AnnotateModels
 ==============
-1234565789012345657890123456578901234565789012345657890123456578901234565789012345657890
 
 A collection of rake tasks to annotate files with ActiveRecord model information.
 Currently, this plugin annotates the following files:
