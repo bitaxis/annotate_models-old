@@ -14,19 +14,22 @@ Example
 The plugin comes with these tasks:
 
   - annotate:all        Annotates factories (that is, factory_girl ones) and models.
-  - annotate:factories  Annotates only model files.
-  - annotate:models     Annotates only factory files.
+  - annotate:factories  Annotates only factory_girl factories.
+  - annotate:models     Annotates only ActiveRecord model files.
   - annotate:print      Only prints out annotations.
 
-To invoke it, simply type:
+To invoke it, execute the command:
 
-  > rake annotate:all
+  > rake annotate:all       OR
+  > rake annotate:factories OR
+  > rake annotate:models    OR
+  > rake annotate:print
 
 
 Compatibility
 =============
 
-Tested with Rails 3.0.3 & Ruby 1.9.2 on Mac OS X.
+Works with Rails 3.0.3 & Ruby 1.9.2 on Mac OS X.
 
 
 This plugin is my own implementation and shares no code with other pre-existing
