@@ -5,8 +5,10 @@ class ModelAnnotationGenerator
   end
   
   def apply_to_factories
+    pn_factories = Pathname.new("test/factories")
+    return unless pn_factories.exist?
     @annotations.each do |model, annotation|
-      pn = Pathname.new("test/factories") + "#{ActiveSupport::Inflector.underscore(model.name)}_factory.rb"
+      pn = pn_factories + "#{ActiveSupport::Inflector.underscore(model.name)}_factory.rb"
       text = File.open(pn.to_path) { |fp| fp.read }
       re = Regexp.new("^# (?:=-)+=\n# #{model.name}.*\n(?:#.+\n)+# (?:=-)+=\n", Regexp::MULTILINE)
       if re =~ text
@@ -20,8 +22,10 @@ class ModelAnnotationGenerator
   end
   
   def apply_to_models
+    pn_models = Pathname.new("app/models")
+    return unless pn_models.exist?
     @annotations.each do |model, annotation|
-      pn = Pathname.new("app/models") + "#{ActiveSupport::Inflector.underscore(model.name)}.rb"
+      pn = pn_models + "#{ActiveSupport::Inflector.underscore(model.name)}.rb"
       text = File.open(pn.to_path) { |fp| fp.read }
       re = Regexp.new("^# (?:=-)+=\n# #{model.name}.*\n(?:#.+\n)+# (?:=-)+=\n", Regexp::MULTILINE)
       if re =~ text
