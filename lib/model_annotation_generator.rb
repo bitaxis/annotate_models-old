@@ -9,6 +9,7 @@ class ModelAnnotationGenerator
     return unless pn_factories.exist?
     @annotations.each do |model, annotation|
       pn = pn_factories + "#{ActiveSupport::Inflector.underscore(model.name)}_factory.rb"
+      next unless pn.exist?
       text = File.open(pn.to_path) { |fp| fp.read }
       re = Regexp.new("^# (?:=-)+=\n# #{model.name}.*\n(?:#.+\n)+# (?:=-)+=\n", Regexp::MULTILINE)
       if re =~ text
