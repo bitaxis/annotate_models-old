@@ -17,19 +17,21 @@ The plugin comes with these tasks:
   - annotate:factories  Annotates only factory_girl factories.
   - annotate:models     Annotates only ActiveRecord model files.
   - annotate:print      Only prints out annotations.
+  - annotate:test:unit  Annotates unit test files.
 
 To invoke it, execute the command:
 
-  > rake annotate:all       OR
-  > rake annotate:factories OR
-  > rake annotate:models    OR
-  > rake annotate:print
+  > rake annotate:all        OR
+  > rake annotate:factories	 OR
+  > rake annotate:models     OR
+  > rake annotate:print      OR
+  > rake annootate:test:unit
 
 
 Compatibility
 =============
 
-Works with Rails 3.0.3 & Ruby 1.9.2 on Mac OS X.
+Works with Rails 3.0.x & Ruby 1.9.2 on Mac OS X.
 
 
 This plugin is my own implementation and shares no code with other pre-existing
