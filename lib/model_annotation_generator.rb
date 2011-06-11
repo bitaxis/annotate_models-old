@@ -39,6 +39,23 @@ class ModelAnnotationGenerator
     end
   end
   
+  def apply_to_unit_tests
+    pn_unit_tests = Pathname.new("test/unit")
+    return unless pn_unit_tests.exist?
+    @annotations.each do |model, annotation|
+      pn = pn_unit_tests + "#{ActiveSupport::Inflector.underscore(model.name)}_test.rb"
+      text = File.open(pn.to_path) { |fp| fp.read }
+      re = Regexp.new("^# (?:=-)+=\n# #{model.name}.*\n(?:#.+\n)+# (?:=-)+=\n", Regexp::MULTILINE)
+      if re =~ text
+        text = text.sub(re, annotation)
+      else
+        text = annotation + "\n" + text
+      end
+      File.open(pn.to_path, "w") { |fp| fp.write(text) }
+      puts "Annotated #{pn.to_path}."
+    end
+  end
+  
   def generate
     Dir["app/models/*.rb"].each do |path|
       result = File.basename(path).scan(/^(.+)\.rb/)[0][0]

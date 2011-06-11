@@ -1,7 +1,7 @@
 namespace :annotate do
   
   desc "Annotate everything"
-  task :all => [:factories, :models]
+  task :all => [:factories, :models, "test:unit"]
   
   desc "Annotate factories"
   task :factories => :environment do
@@ -22,6 +22,17 @@ namespace :annotate do
     am = ModelAnnotationGenerator.new
     am.generate
     am.print
+  end
+  
+  namespace :test do
+
+    desc "Annotate unit tests"
+    task :unit => :environment do
+      am = ModelAnnotationGenerator.new
+      am.generate
+      am.apply_to_unit_tests
+    end
+
   end
   
 end
